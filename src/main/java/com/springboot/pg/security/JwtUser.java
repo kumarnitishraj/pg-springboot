@@ -15,7 +15,7 @@ public class JwtUser implements UserDetails {
 
     private final Long id;
     private final String username;
-    
+    private final String name;
     private final String password;
     private final String email;
     private final Collection<? extends GrantedAuthority> authorities;
@@ -24,12 +24,14 @@ public class JwtUser implements UserDetails {
 
     public JwtUser(
           Long id,
+          String name,
           String username,
           String email,
           String password, Collection<? extends GrantedAuthority> authorities,
           boolean enabled,
           Date lastPasswordResetDate
     ) {
+    	this.name = username;
         this.id = id;
         this.username = username;
         this.email = email;
@@ -39,7 +41,11 @@ public class JwtUser implements UserDetails {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-    @JsonIgnore
+    public String getName() {
+		return name;
+	}
+
+	@JsonIgnore
     public Long getId() {
         return id;
     }

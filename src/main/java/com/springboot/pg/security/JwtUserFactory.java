@@ -3,6 +3,7 @@ package com.springboot.pg.security;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -16,8 +17,10 @@ public final class JwtUserFactory {
     }
 
     public static JwtUser create(User user) {
+    	
         return new JwtUser(
                 user.getId(),
+                null,
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
